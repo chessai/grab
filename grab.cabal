@@ -4,7 +4,7 @@ name:
 version:
   0.1.0.0
 synopsis:
-  grab nixpkgs from github
+  grab nixpkgs info from github
 --description:
 homepage:
   https://github.com/chessai/grab

@@ -27,11 +27,11 @@ main = fetch =<< execParser opts
 fetch :: GitHubUpstream -> IO ()
 fetch g@GitHubUpstream{..} = do
   let stripNewlines = Text.filter (/= '\n')
-  let unpackStatus = if pack then "" else "--unpack"
-  hash <- (stripNewlines . Text.pack) <$> readProcess "nix-prefetch-url" [Text.unpack (constructUrl g)] unpackStatus
+  let url = Text.unpack (constructUrl g)
+  let args = if pack then [url] else ["--unpack", url]
+  hash <- (stripNewlines . Text.pack) <$> readProcess "nix-prefetch-url" args []
   let nixpkg = NixPkg owner repo rev hash
   let pretty = BL.toStrict (encodePretty nixpkg)
-  BC8.putStrLn "\n" 
   BC8.putStrLn pretty
 
 constructUrl :: GitHubUpstream -> Text
