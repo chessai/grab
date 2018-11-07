@@ -59,17 +59,17 @@ parserGitHubUpstream :: Parser GitHubUpstream
 parserGitHubUpstream = GitHubUpstream
   <$> strOption
       (  long "owner"
-      <> metavar "Repository Owner"
+      <> metavar "REPO_OWNER"
       <> value "NixOS"
       )
   <*> strOption
       (  long "repo"
-      <> metavar "Repository name"
+      <> metavar "REPO_NAME"
       <> value "nixpkgs"
       )
   <*> strOption
       (  long "rev"
-      <> metavar "SHA-1 hash of revision"
+      <> metavar "REVISION_SHA1"
       )
   <*> switch
       ( long "pack"
@@ -79,7 +79,7 @@ data GitHubUpstream = GitHubUpstream
   { owner  :: Text
   , repo   :: Text
   , rev    :: Text
-  , pack :: Bool
+  , pack   :: Bool
   }
 
 data NixPkg = NixPkg
